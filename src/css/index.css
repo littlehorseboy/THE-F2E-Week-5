@@ -31,3 +31,30 @@ body {
       line-height: 52px;
       font-weight: 700;
       text-align: center; }
+    .main .main-article .main-article-content {
+      padding: 24px;
+      padding-right: 0; }
+      .main .main-article .main-article-content .two-column {
+        display: flex;
+        margin-bottom: 1rem; }
+      .main .main-article .main-article-content .two-column > div:nth-child(1) {
+        flex: 1;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 700; }
+      .main .main-article .main-article-content .two-column > div:nth-child(2) {
+        flex: 5;
+        font-size: 16px;
+        line-height: 24px; }
+      .main .main-article .main-article-content .two-row-title {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 700; }
+      .main .main-article .main-article-content .two-row-summary {
+        font-size: 16px;
+        line-height: 24px; }
+
+.footer {
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  max-width: 1024px; }
