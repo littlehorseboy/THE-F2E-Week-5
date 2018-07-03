@@ -5,17 +5,13 @@ const Home = Vue.component('Home', {
       
     };
   },
-  mounted() {
-    window.sr = ScrollReveal();
-    sr.reveal('.image-Container');
-  },
 });
 
-const Product = {
-  template: '#Product',
+const Reading = {
+  template: '#Reading',
   computed: {
     product() {
-      return this.$store.getters.getProductById(this.$route.params.id);
+      // return this.$store.getters.getProductById(this.$route.params.id);
     },
   },
   mounted() {
@@ -31,9 +27,9 @@ const routes = [
     component: Home,
   },
   {
-    path: '/product/:id',
-    name: 'product',
-    component: Product,
+    path: '/reading/:id',
+    name: 'reading',
+    component: Reading,
   },
 ];
 
