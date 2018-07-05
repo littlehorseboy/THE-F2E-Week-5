@@ -17,6 +17,17 @@ const Reading = {
   mounted() {
     window.sr = ScrollReveal();
     sr.reveal('.image-Container');
+
+    const pageBtn = document.querySelectorAll('.horizontal-control > div');
+
+    tippy(pageBtn, {
+      delay: 100,
+      arrow: true,
+      arrowType: 'round',
+      size: 'large',
+      duration: 500,
+      animation: 'scale',
+    });
   },
 };
 
