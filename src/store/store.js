@@ -59,7 +59,7 @@ const store = new Vuex.Store({
         pages: [
           {
             pageId: 1,
-            imgSrc: 'https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png',
+            imgSrc: 'https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-6.png',
           },
           {
             pageId: 2,
@@ -67,7 +67,7 @@ const store = new Vuex.Store({
           },
           {
             pageId: 3,
-            imgSrc: 'https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-3.png',
+            imgSrc: 'https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-8.png',
           },
           {
             pageId: 4,
@@ -79,7 +79,7 @@ const store = new Vuex.Store({
           },
           {
             pageId: 6,
-            imgSrc: 'https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-6.png',
+            imgSrc: 'https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png',
           },
           {
             pageId: 7,
@@ -87,7 +87,7 @@ const store = new Vuex.Store({
           },
           {
             pageId: 8,
-            imgSrc: 'https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-8.png',
+            imgSrc: 'https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-3.png',
           },
           {
             pageId: 9,

@@ -4,7 +4,7 @@ body {
   box-sizing: border-box; }
 
 .pointer-events-none {
-  pointer-events: none; }
+  pointer-events: none !important; }
 
 .header {
   background-color: black; }

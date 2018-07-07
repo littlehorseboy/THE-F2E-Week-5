@@ -4,14 +4,13 @@ const Home = Vue.component('Home', {
 
 const Reading = {
   template: '#Reading',
+  data() {
+    return {
+      chapterSelected: '1',
+      pageSelected: '1',
+    };
+  },
   computed: {
-    chapterSelected() {
-      return this.$route.params.chapterId;
-    },
-    pageSelected() {
-      return this.$route.params.pageId;
-    },
-
     // Vuex
     chapters() {
       return this.$store.getters.getChapters;
@@ -37,15 +36,27 @@ const Reading = {
   },
   methods: {
     chapterSelectedOnChange(e) {
-      router.push({ path: `/reading/${e.target.value}/${this.pageSelected}` });
+      this.pageSelected = this.pagesLength.min;
+
+      router.push({ path: `/reading/${this.chapterSelected}/${this.pageSelected}` });
     },
-    pageSelectedOnChange(e) {
-      router.push({ path: `/reading/${this.chapterSelected}/${e.target.value}` });
+    pageSelectedOnChange(newPageId) {
+      if (newPageId) {
+        if (newPageId > this.pagesLength.max) {
+          alert('已經是最後一頁了!');
+          return false;
+        } else if (newPageId < this.pagesLength.min) {
+          alert('目前在第一頁!');
+          return false;
+        }
+        this.pageSelected = newPageId;
+      }
+      router.push({ path: `/reading/${this.chapterSelected}/${this.pageSelected}` });
     },
   },
   mounted() {
-    // window.sr = ScrollReveal();
-    // sr.reveal('.image-Container');
+    this.chapterSelected = this.$route.params.chapterId;
+    this.pageSelected = this.$route.params.pageId;
 
     const pageBtn = document.querySelectorAll('.horizontal-control > div');
 
@@ -65,11 +76,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
-  },
-  {
-    path: '/reading/:chapterId',
-    name: 'reading',
-    component: Reading,
   },
   {
     path: '/reading/:chapterId/:pageId',

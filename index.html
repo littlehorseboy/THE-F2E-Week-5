@@ -24,7 +24,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
-    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
     <script src="https://unpkg.com/tippy.js@2.5.3/dist/tippy.all.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -101,7 +100,7 @@
                                 Chapter {{ chapter.chapterId }}
                             </option>
                         </select>
-                        <select v-model="pageSelected" @change="pageSelectedOnChange">
+                        <select v-model="pageSelected" @change="pageSelectedOnChange()">
                             <option v-for="page in chapter.pages" :value="page.pageId">
                                 Page {{ page.pageId }}
                             </option>
@@ -116,31 +115,25 @@
                 </div>
 
                 <div>
-                    <router-link :to="`/reading/${$route.params.chapterId}/${+$route.params.pageId - 1}`" tag="div"
+                    <div @click="pageSelectedOnChange(+$route.params.pageId - 1 + '')"
                         :class="{ 'pointer-events-none': pagesLength.min == $route.params.pageId}" class="page-left">
                         <i class="fas fa-angle-left"></i>
-                    </router-link>
-                    <!-- <div class="page-left">
-                        <i class="fas fa-angle-left"></i>
-                    </div> -->
+                    </div>
 
                     <img :src="page.imgSrc">
 
-                    <router-link :to="`/reading/${$route.params.chapterId}/${+$route.params.pageId + 1}`" tag="div"
+                    <div @click="pageSelectedOnChange(+$route.params.pageId + 1 + '')"
                         :class="{ 'pointer-events-none': pagesLength.max == $route.params.pageId}" class="page-right">
                         <i class="fas fa-angle-right"></i>
-                    </router-link>
-                    <!-- <div class="page-right">
-                        <i class="fas fa-angle-right"></i>
-                    </div> -->
+                    </div>
                 </div>
 
                 <div class="horizontal-footer">
                     <div class="horizontal-control">
-                        <div title="LAST CHAPTER!">
+                        <div @click="pageSelectedOnChange(+$route.params.pageId - 1 + '')" title="LAST CHAPTER!">
                             <i class="fas fa-angle-double-left"></i>
                         </div>
-                        <div title="NEXT CHAPTER!">
+                        <div @click="pageSelectedOnChange(+$route.params.pageId + 1 + '')" title="NEXT CHAPTER!">
                             <i class="fas fa-angle-double-right"></i>
                         </div>
                     </div>
@@ -148,10 +141,8 @@
                         <div v-for="page in chapter.pages">
                             <div>
                                 <div>{{ page.pageId }}</div>
-                                <router-link :to="`/reading/${$route.params.chapterId}/${page.pageId}`" tag="img"
-                                    :src="page.imgSrc" :class="{ hoverBorder: page.pageId == $route.params.pageId }">
-                                    Chapter 1: The F2E Challenge Start!
-                                </router-link>
+                                <img @click="pageSelectedOnChange(page.pageId)" :src="page.imgSrc"
+                                    :class="{ hoverBorder: page.pageId == $route.params.pageId }">
                             </div>
                         </div>
                     </div>
