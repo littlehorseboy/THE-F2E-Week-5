@@ -77,10 +77,10 @@
                 <div>All Chapters</div>
                 <div>
                     <ul>
-                        <router-link to="/reading/1" tag="li">
+                        <router-link to="/reading/1/1" tag="li">
                             Chapter 1: The F2E Challenge Start!
                         </router-link>
-                        <router-link to="/reading/2" tag="li">
+                        <router-link to="/reading/2/1" tag="li">
                             Chapter 2: Todo List is Going Crazy!
                             <span>New</span>
                         </router-link>
@@ -96,23 +96,15 @@
                     <div>
                         My Hexschool
                         <i class="fas fa-caret-right"></i>
-                        <select>
-                            <option value="1">Chapter 1</option>
-                            <option value="2">Chapter 2</option>
+                        <select v-model="chapterSelected" @change="chapterSelectedOnChange">
+                            <option v-for="chapter in chapters" :value="chapter.chapterId">
+                                Chapter {{ chapter.chapterId }}
+                            </option>
                         </select>
-                        <select>
-                            <option value="1">Page 1</option>
-                            <option value="2">Page 2</option>
-                            <option value="3">Page 3</option>
-                            <option value="4">Page 4</option>
-                            <option value="5">Page 5</option>
-                            <option value="6">Page 6</option>
-                            <option value="7">Page 7</option>
-                            <option value="8">Page 8</option>
-                            <option value="9">Page 9</option>
-                            <option value="10">Page 10</option>
-                            <option value="11">Page 11</option>
-                            <option value="12">Page 12</option>
+                        <select v-model="pageSelected" @change="pageSelectedOnChange">
+                            <option v-for="page in chapter.pages" :value="page.pageId">
+                                Page {{ page.pageId }}
+                            </option>
                         </select>
                     </div>
 
@@ -124,13 +116,23 @@
                 </div>
 
                 <div>
-                    <div class="page-left">
+                    <router-link :to="`/reading/${$route.params.chapterId}/${+$route.params.pageId - 1}`" tag="div"
+                        :class="{ 'pointer-events-none': pagesLength.min == $route.params.pageId}" class="page-left">
                         <i class="fas fa-angle-left"></i>
-                    </div>
-                    <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                    <div class="page-right">
+                    </router-link>
+                    <!-- <div class="page-left">
+                        <i class="fas fa-angle-left"></i>
+                    </div> -->
+
+                    <img :src="page.imgSrc">
+
+                    <router-link :to="`/reading/${$route.params.chapterId}/${+$route.params.pageId + 1}`" tag="div"
+                        :class="{ 'pointer-events-none': pagesLength.max == $route.params.pageId}" class="page-right">
                         <i class="fas fa-angle-right"></i>
-                    </div>
+                    </router-link>
+                    <!-- <div class="page-right">
+                        <i class="fas fa-angle-right"></i>
+                    </div> -->
                 </div>
 
                 <div class="horizontal-footer">
@@ -143,64 +145,13 @@
                         </div>
                     </div>
                     <div class="horizontal-imgs">
-                        <div>
+                        <div v-for="page in chapter.pages">
                             <div>
-                                <div>1</div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <div>1</div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <div>1</div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <div>1</div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <div>1</div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/storyboard-1.png">
+                                <div>{{ page.pageId }}</div>
+                                <router-link :to="`/reading/${$route.params.chapterId}/${page.pageId}`" tag="img"
+                                    :src="page.imgSrc" :class="{ hoverBorder: page.pageId == $route.params.pageId }">
+                                    Chapter 1: The F2E Challenge Start!
+                                </router-link>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,10 @@ body {
   box-sizing: border-box;
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .header {
   background-color: black;
   h1 {
@@ -212,6 +216,9 @@ body {
             &:hover {
               border: 5px solid #000;
             }
+          }
+          >img.hoverBorder {
+            border: 5px solid #000;
           }
         }
       }

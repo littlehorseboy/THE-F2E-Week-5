@@ -3,6 +3,9 @@ body {
   background: #F2F2F2;
   box-sizing: border-box; }
 
+.pointer-events-none {
+  pointer-events: none; }
+
 .header {
   background-color: black; }
   .header h1 {
@@ -178,3 +181,5 @@ body {
             box-sizing: border-box; }
             .reading-main > .horizontal-footer .horizontal-imgs > div > div > img:hover {
               border: 5px solid #000; }
+          .reading-main > .horizontal-footer .horizontal-imgs > div > div > img.hoverBorder {
+            border: 5px solid #000; }
