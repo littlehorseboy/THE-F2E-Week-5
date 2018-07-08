@@ -1,3 +1,10 @@
+const Header = Vue.component('Header', {
+  template: '#Header',
+  props: {
+    nightMode: Boolean,
+  },
+});
+
 const Home = Vue.component('Home', {
   template: '#Home',
 });
@@ -6,8 +13,11 @@ const Reading = {
   template: '#Reading',
   data() {
     return {
+      // 單元及頁數
       chapterSelected: '1',
       pageSelected: '1',
+      // 夜間模式
+      nightMode: false, 
     };
   },
   computed: {

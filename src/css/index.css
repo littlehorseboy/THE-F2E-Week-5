@@ -6,15 +6,39 @@ body {
 .pointer-events-none {
   pointer-events: none !important; }
 
+.toggleBtn {
+  display: inline-flex;
+  width: 48px;
+  height: 24px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border: 2px solid #000;
+  cursor: pointer; }
+  .toggleBtn > div {
+    width: 50%;
+    background-color: #000;
+    transition: transform 0.5s; }
+  .toggleBtn.night-mode {
+    border: 2px solid #fff; }
+    .toggleBtn.night-mode > div {
+      background-color: #fff;
+      transform: translateX(100%); }
+
 .header {
-  background-color: black; }
+  background-color: #000;
+  transition: background-color 1s; }
   .header h1 {
     margin: 0;
     color: #50FF44;
     font-size: 36px;
     line-height: 74px;
     text-align: center;
-    font-style: italic; }
+    font-style: italic;
+    transition: color 1s; }
+  .header.night-mode {
+    background-color: #50FF44; }
+    .header.night-mode h1 {
+      color: #000; }
 
 .main {
   margin: 0 auto;
@@ -99,87 +123,103 @@ body {
           line-height: 14px;
           padding: 4px 18px; }
 
-.reading-main {
-  margin: 0 auto;
-  margin-top: 1.5rem;
-  max-width: 1024px; }
-  .reading-main > div:nth-child(1) {
-    display: flex;
-    justify-content: space-between; }
-  .reading-main > div:nth-child(2) {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem; }
-    .reading-main > div:nth-child(2) .page-left {
-      width: 100%;
+.reading {
+  transition: background-color 1s, color 1s; }
+  .reading.night-mode {
+    background-color: #000;
+    color: #fff; }
+  .reading .reading-main {
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    max-width: 1024px; }
+    .reading .reading-main > div:nth-child(1) {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(0, 0, 0, 0.1); }
-      .reading-main > div:nth-child(2) .page-left:hover {
-        background: #000000;
-        color: #50FF44;
-        cursor: pointer; }
-      .reading-main > div:nth-child(2) .page-left i {
-        font-size: 5rem; }
-    .reading-main > div:nth-child(2) .page-right {
-      width: 100%;
+      justify-content: space-between; }
+      .reading .reading-main > div:nth-child(1) .topRightFeaturesRow {
+        display: flex;
+        align-items: center; }
+    .reading .reading-main > div:nth-child(2) {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(0, 0, 0, 0.1); }
-      .reading-main > div:nth-child(2) .page-right:hover {
-        background: #000000;
-        color: #50FF44;
-        cursor: pointer; }
-      .reading-main > div:nth-child(2) .page-right i {
-        font-size: 5rem; }
-  .reading-main > .horizontal-footer {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    position: relative; }
-    .reading-main > .horizontal-footer .horizontal-control {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
       justify-content: space-between;
-      pointer-events: none; }
-      .reading-main > .horizontal-footer .horizontal-control > div {
-        height: 80%;
-        padding-left: 7px;
-        padding-right: 7px;
+      margin-top: 2rem; }
+      .reading .reading-main > div:nth-child(2) .page-left {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(0, 0, 0, 0.1); }
+        .reading .reading-main > div:nth-child(2) .page-left.night-mode {
+          color: #fff; }
+        .reading .reading-main > div:nth-child(2) .page-left:hover {
+          background: #000000;
+          color: #50FF44;
+          cursor: pointer; }
+        .reading .reading-main > div:nth-child(2) .page-left i {
+          font-size: 5rem; }
+      .reading .reading-main > div:nth-child(2) .page-right {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(0, 0, 0, 0.1); }
+        .reading .reading-main > div:nth-child(2) .page-right.night-mode {
+          color: #fff; }
+        .reading .reading-main > div:nth-child(2) .page-right:hover {
+          background: #000000;
+          color: #50FF44;
+          cursor: pointer; }
+        .reading .reading-main > div:nth-child(2) .page-right i {
+          font-size: 5rem; }
+    .reading .reading-main > .horizontal-footer {
+      margin-top: 1rem;
+      position: relative; }
+      .reading .reading-main > .horizontal-footer .horizontal-control {
+        position: absolute;
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        pointer-events: auto;
-        font-size: 3rem;
-        color: rgba(0, 0, 0, 0.5);
-        background-color: rgba(0, 0, 0, 0.8); }
-        .reading-main > .horizontal-footer .horizontal-control > div:hover {
-          color: #000;
-          background-color: #50FF44; }
-    .reading-main > .horizontal-footer .horizontal-imgs {
-      width: 100%;
-      height: 100%;
-      white-space: nowrap;
-      overflow-x: scroll; }
-      .reading-main > .horizontal-footer .horizontal-imgs > div {
-        display: inline-block;
-        width: 12%;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        cursor: pointer; }
-        .reading-main > .horizontal-footer .horizontal-imgs > div > div {
-          width: 100%;
-          display: inline-block; }
-          .reading-main > .horizontal-footer .horizontal-imgs > div > div > div {
-            text-align: center; }
-          .reading-main > .horizontal-footer .horizontal-imgs > div > div > img {
+        pointer-events: none; }
+        .reading .reading-main > .horizontal-footer .horizontal-control > div {
+          height: 80%;
+          padding-left: 7px;
+          padding-right: 7px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          pointer-events: auto;
+          font-size: 3rem;
+          color: rgba(0, 0, 0, 0.5);
+          background-color: rgba(0, 0, 0, 0.8); }
+          .reading .reading-main > .horizontal-footer .horizontal-control > div:hover {
+            color: #000;
+            background-color: #50FF44; }
+      .reading .reading-main > .horizontal-footer .horizontal-imgs {
+        width: 100%;
+        height: 100%;
+        white-space: nowrap;
+        overflow-x: scroll; }
+        .reading .reading-main > .horizontal-footer .horizontal-imgs > div {
+          display: inline-block;
+          width: 12%;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          cursor: pointer; }
+          .reading .reading-main > .horizontal-footer .horizontal-imgs > div > div {
             width: 100%;
-            box-sizing: border-box; }
-            .reading-main > .horizontal-footer .horizontal-imgs > div > div > img:hover {
-              border: 5px solid #000; }
-          .reading-main > .horizontal-footer .horizontal-imgs > div > div > img.hoverBorder {
-            border: 5px solid #000; }
+            display: inline-block; }
+            .reading .reading-main > .horizontal-footer .horizontal-imgs > div > div > div {
+              text-align: center; }
+            .reading .reading-main > .horizontal-footer .horizontal-imgs > div > div > img {
+              width: 100%;
+              box-sizing: border-box; }
+              .reading .reading-main > .horizontal-footer .horizontal-imgs > div > div > img:hover {
+                border: 5px solid #000; }
+              .reading .reading-main > .horizontal-footer .horizontal-imgs > div > div > img.hoverBorder {
+                border: 5px solid #000; }
+              .reading .reading-main > .horizontal-footer .horizontal-imgs > div > div > img.night-mode {
+                border-color: #50FF44; }
+                .reading .reading-main > .horizontal-footer .horizontal-imgs > div > div > img.night-mode:hover {
+                  border-color: #50FF44; }

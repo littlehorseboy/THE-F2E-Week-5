@@ -16,9 +16,9 @@
 
 <body>
     <div id="app">
-        <header class="header">
+        <!-- <header class="header">
             <h1>Comicomic</h1>
-        </header>
+        </header> -->
 
         <router-view></router-view>
     </div>
@@ -27,8 +27,17 @@
     <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
     <script src="https://unpkg.com/tippy.js@2.5.3/dist/tippy.all.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/x-template" id="Header">
+        <header class="header" :class="{ 'night-mode': nightMode }">
+            <h1>Comicomic</h1>
+        </header>
+    </script>
+
     <script type="text/x-template" id="Home">
         <div>
+            <Header></Header>
+
             <div class="main">
                 <div class="main-img">
                     <img src="https://hexschool.github.io/THE_F2E_Design/week5-comic%20viewer/assets/comic%20cover.png">
@@ -88,61 +97,68 @@
             </div>
         </div>
     </script>
+
     <script type="text/template" id="Reading">
         <div>
-            <div class="reading-main">
-                <div>
+            <Header :nightMode="nightMode"></Header>
+
+            <div :class="{ 'night-mode': nightMode }" class="reading">
+                <div class="reading-main">
                     <div>
-                        My Hexschool
-                        <i class="fas fa-caret-right"></i>
-                        <select v-model="chapterSelected" @change="chapterSelectedOnChange">
-                            <option v-for="chapter in chapters" :value="chapter.chapterId">
-                                Chapter {{ chapter.chapterId }}
-                            </option>
-                        </select>
-                        <select v-model="pageSelected" @change="pageSelectedOnChange()">
-                            <option v-for="page in chapter.pages" :value="page.pageId">
-                                Page {{ page.pageId }}
-                            </option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <i class="fas fa-sun"></i>
-                        <input type="checkbox">
-                        <i class="far fa-moon"></i>
-                    </div>
-                </div>
-
-                <div>
-                    <div @click="pageSelectedOnChange(+$route.params.pageId - 1 + '')"
-                        :class="{ 'pointer-events-none': pagesLength.min == $route.params.pageId}" class="page-left">
-                        <i class="fas fa-angle-left"></i>
-                    </div>
-
-                    <img :src="page.imgSrc">
-
-                    <div @click="pageSelectedOnChange(+$route.params.pageId + 1 + '')"
-                        :class="{ 'pointer-events-none': pagesLength.max == $route.params.pageId}" class="page-right">
-                        <i class="fas fa-angle-right"></i>
-                    </div>
-                </div>
-
-                <div class="horizontal-footer">
-                    <div class="horizontal-control">
-                        <div @click="pageSelectedOnChange(+$route.params.pageId - 1 + '')" title="LAST CHAPTER!">
-                            <i class="fas fa-angle-double-left"></i>
+                        <div>
+                            My Hexschool
+                            <i class="fas fa-caret-right"></i>
+                            <select v-model="chapterSelected" @change="chapterSelectedOnChange">
+                                <option v-for="chapter in chapters" :value="chapter.chapterId">
+                                    Chapter {{ chapter.chapterId }}
+                                </option>
+                            </select>
+                            <select v-model="pageSelected" @change="pageSelectedOnChange()">
+                                <option v-for="page in chapter.pages" :value="page.pageId">
+                                    Page {{ page.pageId }}
+                                </option>
+                            </select>
                         </div>
-                        <div @click="pageSelectedOnChange(+$route.params.pageId + 1 + '')" title="NEXT CHAPTER!">
-                            <i class="fas fa-angle-double-right"></i>
+
+                        <div class="topRightFeaturesRow">
+                            <i :class="[!nightMode ? 'fas fa-sun' : 'far fa-sun']"></i>
+                            <div @click="nightMode = !nightMode" :class="{ 'night-mode': nightMode }" class="toggleBtn">
+                                <div></div>
+                            </div>
+                            <i class="far fa-moon"></i>
                         </div>
                     </div>
-                    <div class="horizontal-imgs">
-                        <div v-for="page in chapter.pages">
-                            <div>
-                                <div>{{ page.pageId }}</div>
-                                <img @click="pageSelectedOnChange(page.pageId)" :src="page.imgSrc"
-                                    :class="{ hoverBorder: page.pageId == $route.params.pageId }">
+
+                    <div>
+                        <div @click="pageSelectedOnChange(+$route.params.pageId - 1 + '')"
+                            :class="[{ 'pointer-events-none': pagesLength.min == $route.params.pageId}, { 'night-mode': nightMode }]" class="page-left">
+                            <i class="fas fa-angle-left"></i>
+                        </div>
+
+                        <img :src="page.imgSrc">
+
+                        <div @click="pageSelectedOnChange(+$route.params.pageId + 1 + '')"
+                            :class="[{ 'pointer-events-none': pagesLength.max == $route.params.pageId}, { 'night-mode': nightMode }]" class="page-right">
+                            <i class="fas fa-angle-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="horizontal-footer">
+                        <div class="horizontal-control">
+                            <div @click="pageSelectedOnChange(+$route.params.pageId - 1 + '')" title="LAST CHAPTER!">
+                                <i class="fas fa-angle-double-left"></i>
+                            </div>
+                            <div @click="pageSelectedOnChange(+$route.params.pageId + 1 + '')" title="NEXT CHAPTER!">
+                                <i class="fas fa-angle-double-right"></i>
+                            </div>
+                        </div>
+                        <div class="horizontal-imgs">
+                            <div v-for="page in chapter.pages">
+                                <div>
+                                    <div>{{ page.pageId }}</div>
+                                    <img @click="pageSelectedOnChange(page.pageId)" :src="page.imgSrc"
+                                        :class="[{ hoverBorder: page.pageId == $route.params.pageId }, { 'night-mode': nightMode }]">
+                                </div>
                             </div>
                         </div>
                     </div>
