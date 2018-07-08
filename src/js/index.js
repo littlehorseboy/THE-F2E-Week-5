@@ -64,6 +64,21 @@ const Reading = {
       router.push({ path: `/reading/${this.chapterSelected}/${this.pageSelected}` });
     },
   },
+  watch: {
+    page() {
+      this.$nextTick(() => {
+        if (!this.$el) {
+          return false;
+        }
+        const target = this.$el.querySelector('.hoverBorder');
+        if (!target) {
+          return false;
+        }
+        const horizontalImgs = this.$el.querySelector('.horizontal-imgs');
+        horizontalImgs.scrollLeft = target.offsetLeft - horizontalImgs.offsetWidth / 2 + target.offsetWidth / 2;
+      });
+    },
+  },
   mounted() {
     this.chapterSelected = this.$route.params.chapterId;
     this.pageSelected = this.$route.params.pageId;
